@@ -1,0 +1,171 @@
+{{define "title"}}Claim Property{{end}}
+{{define "head"}}{{end}}
+{{define "content"}}
+
+<div class="container">
+	<div class="page-header">
+		<h1>{{template "title" .}}</h1>
+	</div>
+	
+    <h2>by Folio ID</h2>
+	<form id="form" method="post">
+		<div class="form-group">
+			<label for="folio_id">Property Folio Number</label>
+			<div><input type="text" class="form-control" id="folio_id" name="folio_id" maxlength="48"/></div>
+		</div>
+		
+		<input type="submit" value="Search Property" class="btn btn-primary" />
+		
+		<input type="hidden" name="token" value="{{.token}}">
+	</form>
+    <br />
+    <h2>by Address</h2>
+	<form method="post">
+		<div class="form-group">
+			<label for="house_number">House Number</label>
+			<div><input type="text" class="form-control" id="house_number" name="house_number" maxlength="48" /></div>
+		</div>
+		<div class="form-group">
+			<label for="street_direction">Street Direction</label>
+			<div>
+            <select class="form-control" id="street_direction" name="street_direction" size="1">
+                <option value="">None</option>
+                <option value="N">N</option>
+                <option value="NE">NE</option>
+                <option value="NW">NW</option>
+                <option value="E">E</option>
+                <option value="S">S</option>
+                <option value="SE">SE</option>
+                <option value="SW">SW</option>
+                <option value="W">W</option>
+            </select>
+            </div>
+		</div>
+		<div class="form-group">
+			<label for="street_name">Street Name</label>
+			<div><input type="text" class="form-control" id="street_name" name="street_name" maxlength="48"/></div>
+		</div>
+        <div class="form-group">
+			<label for="street_direction">Street Direction</label>
+			<div>
+            <select class="form-control" id="type" name="type" size="1">
+                <option value="">Select Type</option>
+                <option value="ALY">Alley</option>
+                <option value="AVE">Avenue</option>
+                <option value="BND">Bend</option>
+                <option value="BLVD">Boulevard</option>
+                <option value="CSWY">Causeway</option>
+                <option value="CIR">Circle</option>
+                <option value="CT">Court</option>
+                <option value="CV">Cove</option>
+                <option value="CRES">Crescent</option>
+                <option value="DR">Drive</option>
+                <option value="EXT">Extension</option>
+                <option value="HWY">Highway</option>
+                <option value="HOLW">Hollow</option>
+                <option value="ISLE">Isle</option>
+                <option value="LNDG">Landing</option>
+                <option value="LN">Lane</option>
+                <option value="MNR">Manor</option>
+                <option value="MILE">Mile</option>
+                <option value="PARK">Park</option>
+                <option value="PKWY">Parkway</option>
+                <option value="PASS">Pass</option>
+                <option value="PATH">Path</option>
+                <option value="PL">Place</option>
+                <option value="PT">Point</option>
+                <option value="RD">Road</option>
+                <option value="ROW">Row</option>
+                <option value="RUN">Run</option>
+                <option value="SQ">Square</option>
+                <option value="ST">Street</option>
+                <option value="TER">Terrace</option>
+                <option value="TWP">Township</option>
+                <option value="TRCE">Trace</option>
+                <option value="TRL">Trail</option>
+                <option value="VIEW">View</option>
+                <option value="WALK">Walk</option>
+                <option value="WAY">Way</option>
+            </select>
+            </div>
+		</div>
+		<div class="form-group">
+			<label for="street_name">Street Name</label>
+			<div><input type="text" class="form-control" id="street_name" name="street_name" maxlength="48"/>
+                        <br /><span style="color:red"><b>Note:</b> A Street name field must be exact
+            unless * wildcard is used at the end.
+            For Example: CA* = CAN, CAR, CAT, etc.
+            ALSO: Use only the number itself
+            (Use 2 or 9, not 2nd or 9th.). </span>
+            </div>
+		</div>
+        <div class="form-group">
+			<label for="post_direction">Post Direction</label>
+			<div>
+            <select class="form-control" id="post_direction" name="post_direction" size="1">
+                <option value="">None</option>
+                <option value="N">N</option>
+                <option value="NE">NE</option>
+                <option value="NW">NW</option>
+                <option value="E">E</option>
+                <option value="S">S</option>
+                <option value="SE">SE</option>
+                <option value="SW">SW</option>
+                <option value="W">W</option>
+            </select>
+            </div>
+		</div>
+		<div class="form-group">
+			<label for="unit_number">Unit Number</label>
+			<div><input type="text" class="form-control" id="unit_number" name="unit_number" maxlength="48"/></div>
+		</div>
+		<div class="form-group">
+			<label for="city">City</label>
+			<div>
+            <select class="form-control" id="city" name="city" size="1">
+                    <option value="">None</option>
+                    <option value="CK">COCONUT CREEK</option>
+                    <option value="CY">COOPER CITY</option>
+                    <option value="CS">CORAL SPRINGS</option>
+                    <option value="DN">DANIA BEACH</option>
+                    <option value="DV">DAVIE</option>
+                    <option value="DB">DEERFIELD BEACH</option>
+                    <option value="FL">FORT LAUDERDALE</option>
+                    <option value="HA">HALLANDALE BEACH</option>
+                    <option value="HB">HILLSBORO BEACH</option>
+                    <option value="HW">HOLLYWOOD</option>
+                    <option value="LS">LAUDERDALE BY THE SEA</option>
+                    <option value="LL">LAUDERDALE LAKES</option>
+                    <option value="LH">LAUDERHILL</option>
+                    <option value="LZ">LAZY LAKE</option>
+                    <option value="LP">LIGHTHOUSE POINT</option>
+                    <option value="MG">MARGATE</option>
+                    <option value="MM">MIRAMAR</option>
+                    <option value="NL">NORTH LAUDERDALE</option>
+                    <option value="OP">OAKLAND PARK</option>
+                    <option value="PA">PARKLAND</option>
+                    <option value="PK">PEMBROKE PARK</option>
+                    <option value="PI">PEMBROKE PINES</option>
+                    <option value="PL">PLANTATION</option>
+                    <option value="PB">POMPANO BEACH</option>
+                    <option value="SL">SEA RANCH LAKES</option>
+                    <option value="SW">SOUTHWEST RANCHES</option>
+                    <option value="SU">SUNRISE</option>
+                    <option value="TM">TAMARAC</option>
+                    <option value="BC">UNINCORPORATED</option>
+                    <option value="WP">WEST PARK</option>
+                    <option value="WS">WESTON</option>
+                    <option value="WM">WILTON MANORS</option>
+            </select>
+            </div>
+		</div>
+		<input type="submit" value="Search Property" class="btn btn-primary" />
+		
+		<input type="hidden" name="token" value="{{.token}}">
+	</form>
+	
+	{{template "footer" .}}
+</div>
+
+{{end}}
+{{define "foot"}}{{end}}

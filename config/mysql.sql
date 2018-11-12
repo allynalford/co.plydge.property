@@ -73,3 +73,26 @@ CREATE TABLE note (
     
     PRIMARY KEY (id)
 );
+
+CREATE TABLE folio (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+
+    user_id INT(10) UNSIGNED NOT NULL,
+
+    folio VARCHAR(50) NOT NULL,
+    site_address VARCHAR(50) NOT NULL,
+    mailing_address VARCHAR(50) NOT NULL,
+    ownerinfo VARCHAR(100) NOT NULL,
+    mailage VARCHAR(50) NOT NULL,
+    useage VARCHAR(50) NOT NULL,
+    legal VARCHAR(50) NOT NULL,
+    
+    
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+    
+    CONSTRAINT `f_folio_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    
+    PRIMARY KEY (id)
+);

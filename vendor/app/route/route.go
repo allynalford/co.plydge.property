@@ -85,6 +85,17 @@ func routes() *httprouter.Router {
 		New().
 		ThenFunc(controller.AboutGET)))
 
+	//Property Claim
+	r.GET("/property", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.PropertyReadGET)))
+	r.GET("/property/create", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.PropertyCreateGET)))
+	r.POST("/property/create", hr.Handler(alice.
+		New(acl.DisallowAnon).
+		ThenFunc(controller.PropertyCreatePOST)))
+
 	// Notepad
 	r.GET("/notepad", hr.Handler(alice.
 		New(acl.DisallowAnon).
