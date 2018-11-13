@@ -3,7 +3,7 @@ MAINTAINER Nomous
 
 EXPOSE 80
 
-COPY gowebapp /gowebapp
+COPY co.plydge.property /co.plydge.property
 COPY ca-certificates.crt /etc/ssl/certs/
 
 WORKDIR /data
