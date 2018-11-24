@@ -1,4 +1,5 @@
 FROM golang:1.10.5
+ARG COMMIT_SHA=""
 
 COPY . $GOPATH/src/co.plydge.property
 WORKDIR $GOPATH/src/co.plydge.property
@@ -21,4 +22,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '-w -extldflags "-st
 COPY ca-certificates.crt /etc/ssl/certs/
 
 EXPOSE 80
+
+ENV COMMIT_SHA=${COMMIT_SHA}
 ENTRYPOINT ["./co.plydge.property"]
