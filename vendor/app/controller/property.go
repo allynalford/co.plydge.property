@@ -82,6 +82,7 @@ func PropertyCreatePOST(w http.ResponseWriter, r *http.Request) {
 	v := view.New(r)
 	v.Name = "property/claim"
 	v.Vars["houseNumber"] = houseNumber
+	v.Vars["userID"] = userID
 	v.Vars["token"] = csrfbanana.Token(w, r, sess)
 	v.Render(w)
 
