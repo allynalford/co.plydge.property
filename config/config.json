@@ -1,12 +1,12 @@
 {
 	"Database": {
-		"Type": "Bolt",
+		"Type": "MongoDB",
 		"Bolt": {		
  			"Path": "gowebapp.db"
   		},
 		"MongoDB": {
-			"URL": "127.0.0.1",
-			"Database": "gowebapp"
+			"URL": "mongodb://property:property20!8@ds117834.mlab.com:17834",
+			"Database": "property"
 		},
 		"MySQL": {
 			"Username": "root",
