@@ -8,4 +8,4 @@ docker stop co.plydge.property
 echo "removing old container"
 docker rm co.plydge.property
 echo "starting new container"
-docker run --name co.plydge.property --publish 80:80 -d co.plydge.property
+docker run --name co.plydge.property --restart always --publish 80:80 -d co.plydge.property
