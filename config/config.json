@@ -1,6 +1,6 @@
 {
 	"Database": {
-		"Type": "MongoDB",
+		"Type": "MySQL",
 		"Bolt": {		
  			"Path": "gowebapp.db"
   		},
@@ -9,10 +9,10 @@
 			"Database": "property"
 		},
 		"MySQL": {
-			"Username": "root",
-			"Password": "",
-			"Name": "gowebapp",
-			"Hostname": "127.0.0.1",
+			"Username": "property",
+			"Password": "property20!8",
+			"Name": "propertydev",
+			"Hostname": "plydge-property-01.cggfllfrvqwx.us-east-1.rds.amazonaws.com",
 			"Port": 3306,
 			"Parameter": "?parseTime=true"
 		}
