@@ -75,14 +75,15 @@ func PropertyCreatePOST(w http.ResponseWriter, r *http.Request) {
 	//	return
 	//}
 
-	sess.AddFlash(view.Flash{"Property: " + houseNumber, view.FlashSuccess})
-	sess.Save(r, w)
+	//sess.AddFlash(view.Flash{"Property: " + houseNumber, view.FlashSuccess})
+	//sess.Save(r, w)
 
 	// Display the view
 	v := view.New(r)
 	v.Name = "property/claim"
 	v.Vars["houseNumber"] = houseNumber
 	v.Vars["userID"] = userID
+	v.Vars["formValues"] = r.Form
 	v.Vars["token"] = csrfbanana.Token(w, r, sess)
 	v.Render(w)
 
