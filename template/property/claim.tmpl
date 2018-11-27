@@ -1,0 +1,24 @@
+{{define "title"}}Claim Property{{end}}
+{{define "head"}}{{end}}
+{{define "content"}}
+
+<div class="container">
+	<div class="page-header">
+		<h1>{{template "title" .}}</h1>
+	</div>
+	
+	<form id="form" method="post">
+		<div class="form-group">
+			<label for="note">Note</label>
+			<div><textarea rows="5" class="form-control" id="note" name="note" placeholder="Type your note here..." />{{.houseNumber}}</textarea></div>
+		</div>
+		
+		
+		<input type="hidden" name="token" value="{{.token}}">
+	</form>
+	
+	{{template "footer" .}}
+</div>
+
+{{end}}
+{{define "foot"}}{{end}}
