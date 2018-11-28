@@ -2,6 +2,8 @@ package controller
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net/http"
 
 	"app/shared/session"
@@ -52,12 +54,38 @@ func PropertyCreatePOST(w http.ResponseWriter, r *http.Request) {
 	if validate, missingField := view.Validate(r, []string{"house_number", "street_direction", "street_name"}); !validate {
 		sess.AddFlash(view.Flash{"Field missing: " + missingField, view.FlashError})
 		sess.Save(r, w)
-		NotepadCreateGET(w, r)
+		PropertyCreateGET(w, r)
 		return
 	}
 
 	// Get form values
 	houseNumber := r.FormValue("house_number")
+	streetDirection := r.FormValue("street_direction")
+	streetName := r.FormValue("street_name")
+	situsStreetType := r.FormValue("Situs_Street_Type")
+	postDirection := r.FormValue("post_direction")
+	unitNumber := r.FormValue("unit_number")
+	city := r.FormValue("city")
+
+	urlToCall := fmt.Sprintf("https://p1nng7wkbk.execute-api.us-east-1.amazonaws.com/Prod/?SN=%s&UN=%s&SD=%s&HN=%s&ST=%s&PD=%s&CT=%s", houseNumber, unitNumber, streetDirection, streetName, situsStreetType, postDirection, city)
+
+	log.Println(urlToCall)
+
+	//Make a HTTPS call to the API service for the data
+	var dataStr string
+	response, err := http.Get(urlToCall)
+	if err != nil {
+		fmt.Printf("The HTTP request failed with error %s\n", err)
+	} else {
+
+		log.Println(response.Body)
+
+		data, _ := ioutil.ReadAll(response.Body)
+		fmt.Println(string(data))
+		dataStr = string(data)
+
+		log.Println(dataStr)
+	}
 
 	userID := fmt.Sprintf("%s", sess.Values["id"])
 
@@ -83,7 +111,7 @@ func PropertyCreatePOST(w http.ResponseWriter, r *http.Request) {
 	v.Name = "property/claim"
 	v.Vars["houseNumber"] = houseNumber
 	v.Vars["userID"] = userID
-	v.Vars["formValues"] = r.Form
+	v.Vars["formValues"] = dataStr
 	v.Vars["token"] = csrfbanana.Token(w, r, sess)
 	v.Render(w)
 

@@ -43,12 +43,16 @@
 		</div>
 		<div class="form-group">
 			<label for="street_name">Street Name</label>
-			<div><input type="text" class="form-control" id="street_name" name="street_name" maxlength="48"/></div>
+			<div><input type="text" class="form-control" id="street_name" name="street_name" maxlength="48"/><br /><span style="color:red"><b>Note:</b> A Street name field must be exact
+            unless * wildcard is used at the end.
+            For Example: CA* = CAN, CAR, CAT, etc.
+            ALSO: Use only the number itself
+            (Use 2 or 9, not 2nd or 9th.). </span></div>
 		</div>
         <div class="form-group">
-			<label for="street_direction">Street Direction</label>
+			<label for="Situs_Street_Type">Type</label>
 			<div>
-            <select class="form-control" id="type" name="type" size="1">
+            <select class="form-control" id="Situs_Street_Type" name="Situs_Street_Type" size="1">
                 <option value="">Select Type</option>
                 <option value="ALY">Alley</option>
                 <option value="AVE">Avenue</option>
@@ -87,16 +91,6 @@
                 <option value="WALK">Walk</option>
                 <option value="WAY">Way</option>
             </select>
-            </div>
-		</div>
-		<div class="form-group">
-			<label for="street_name">Street Name</label>
-			<div><input type="text" class="form-control" id="street_name" name="street_name" maxlength="48"/>
-                        <br /><span style="color:red"><b>Note:</b> A Street name field must be exact
-            unless * wildcard is used at the end.
-            For Example: CA* = CAN, CAR, CAT, etc.
-            ALSO: Use only the number itself
-            (Use 2 or 9, not 2nd or 9th.). </span>
             </div>
 		</div>
         <div class="form-group">
