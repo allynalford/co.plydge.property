@@ -1,18 +1,18 @@
 {
 	"Database": {
-		"Type": "Bolt",
+		"Type": "MySQL",
 		"Bolt": {		
  			"Path": "gowebapp.db"
   		},
 		"MongoDB": {
-			"URL": "mongodb://property:property20!8@ds117834.mlab.com:17834",
-			"Database": "property"
+			"URL": "mongodb://property:property20!8@ds117834.mlab.com:17834/property",
+			"Database": ""
 		},
 		"MySQL": {
 			"Username": "property",
-			"Password": "property20!8",
-			"Name": "propertydev",
-			"Hostname": "plydge-property-01.cggfllfrvqwx.us-east-1.rds.amazonaws.com",
+			"Password": "WACOxE1asA",
+			"Name": "gowebapp",
+			"Hostname": "34.224.137.10",
 			"Port": 3306,
 			"Parameter": "?parseTime=true"
 		}

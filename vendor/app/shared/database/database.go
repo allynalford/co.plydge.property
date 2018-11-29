@@ -82,6 +82,52 @@ func DSN(ci MySQLInfo) string {
 		ci.Name + ci.Parameter
 }
 
+//DefaultConnect return to config connection
+func DefaultConnect() {
+	Connect(databases)
+}
+
+//SwapConnect swap connection to the database
+func SwapConnect(dbType Type) {
+	var err error
+	// Use config from storage
+	d := databases
+
+	switch dbType {
+	case TypeMySQL:
+		// Connect to MySQL
+		if SQL, err = sqlx.Connect("mysql", DSN(d.MySQL)); err != nil {
+			log.Println("SQL Driver Error", err)
+		}
+
+		// Check if is alive
+		if err = SQL.Ping(); err != nil {
+			log.Println("Database Error", err)
+		}
+	case TypeBolt:
+		// Connect to Bolt
+		if BoltDB, err = bolt.Open(d.Bolt.Path, 0600, nil); err != nil {
+			log.Println("Bolt Driver Error", err)
+		}
+	case TypeMongoDB:
+		// Connect to MongoDB
+		if Mongo, err = mgo.DialWithTimeout(d.MongoDB.URL, 5*time.Second); err != nil {
+			log.Println("MongoDB Driver Error", err)
+			return
+		}
+
+		// Prevents these errors: read tcp 127.0.0.1:27017: i/o timeout
+		Mongo.SetSocketTimeout(1 * time.Second)
+
+		// Check if is alive
+		if err = Mongo.Ping(); err != nil {
+			log.Println("Database Error", err)
+		}
+	default:
+		log.Println("No registered database in config")
+	}
+}
+
 // Connect to the database
 func Connect(d Info) {
 	var err error
