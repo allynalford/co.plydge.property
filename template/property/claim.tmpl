@@ -11,10 +11,13 @@
     <div class="row">
         <div class="col-sm-10">
              <!--<h1 class="">Starfox221</h1>-->
-         
-          <button type="button" class="btn btn-success">Claim Property</button>  
+         <a title="Claim Property" class="btn btn-success" role="button" href="{{$.BaseURI}}property/claim">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Claim Property
+		</a>
+        <a title="Claim Property" class="btn btn-error" role="button" href="{{$.BaseURI}}property/create">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Search
+		</a>
           
-          <button type="button" class="btn btn-error">New Search</button>
         <br>
         </div>
       <!--
@@ -34,6 +37,46 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Use</strong></span> {{.bcpa.Use}}</li>
                 <!--<li class="list-group-item text-right"><span class="pull-left"><strong class="">Role: </strong></span> Pet Sitter</li>-->
             </ul>
+            <div class="panel panel-default">
+                    <div class="panel-heading">Land Calculations <i class="fa fa-link fa-1x"></i>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive"> 
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>Factor</th>
+                                        <th>Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {{range $n := .bcpa.LandCalculations.Calculations}}
+                                    <tr>
+                                        <td>{{.Price}}</td>
+                                        <td>{{.Factor}}</td>
+                                        <td>{{.Type}}</td>
+                                    </tr>
+                                {{end}}
+                                <tr>
+                                        <td colspan="2">Adj. Bldg. S.F.</td>
+                                        <td>{{.bcpa.LandCalculations.AdjBldgSF}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Units</td>
+                                        <td>{{.bcpa.LandCalculations.Units}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">{{.bcpa.LandCalculations.EffActYearBuilt}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">(Card, Sketch)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>   
            <div class="panel panel-default">
              <div class="panel-heading">Abbreviated Legal Description
 
@@ -71,27 +114,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Property Details</div>
                 <div class="panel-body"> 
-
-                <ul class="list-group">
-                   <!-- <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
-                    </li>-->
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Site Address</strong></span> {{.bcpa.Siteaddress}}</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Property Owner</strong></span> {{.bcpa.Owner}}</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Mailing Address</strong></span> {{.bcpa.MailingAddress}}</li>
-                </ul>
-
-
-
+                    <ul class="list-group">
+                    <!-- <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
+                        </li>-->
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Site Address</strong></span> {{.bcpa.Siteaddress}}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Property Owner</strong></span> {{.bcpa.Owner}}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Mailing Address</strong></span> {{.bcpa.MailingAddress}}</li>
+                    </ul>
                 </div>
             </div>
-
+        </div>
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading">Property Assessment Values</div>
                 <div class="panel-body"> 
 
                   <div class="table-responsive"> 
-                    <table class="table table-condensed">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Year</th>
@@ -113,6 +152,92 @@
                                 <td>{{.Tax}}</td>
                             </tr>
                          {{end}}
+                        </tbody>
+                    </table>
+                 </div>
+             </div>
+        </div>
+        <div class="col-sm-9" style="" contenteditable="false">
+            <div class="panel panel-default">
+                <div class="panel-heading">Property Assessment Values</div>
+                <div class="panel-body"> 
+
+                  <div class="table-responsive"> 
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>County</th>
+                                <th>School Board</th>
+                                <th>Municipal</th>
+                                <th>Independent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.JustValue  }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                            
+                                <td>Just Value</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.JustValue}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.JustValue}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.JustValue}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.JustValue}}</td>
+                            </tr>
+                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Portability }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Portability</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.Portability}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Portability}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.Portability}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.Portability}}</td>
+                            </tr>
+                           {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.AssessedSOH }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Assessed/SOH</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.AssessedSOH}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.AssessedSOH}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.AssessedSOH}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.AssessedSOH}}</td>
+                            </tr>
+                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Homestead }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Homestead</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.Homestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Homestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.Homestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.Homestead}}</td>
+                            </tr>
+                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.AddHomestead }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Add. Homestead</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.AddHomestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.AddHomestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.AddHomestead}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.AddHomestead}}</td>
+                            </tr>
+                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.WidVetDis }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Wid/Vet/Dis</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.WidVetDis}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.WidVetDis}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.WidVetDis}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.WidVetDis}}</td>
+                            </tr>
+                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Senior }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Senior</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.Senior}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Senior}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.Senior}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.Senior}}</td>
+                            </tr>
+                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.XemptType }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
+                                <td>Exempt Type</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.XemptType}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.XemptType}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.XemptType}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.XemptType}}</td>
+                            </tr>
+                            <tr class="danger">
+                                <td>Taxable</td>
+                                <td>{{.bcpa.ExemptionsTaxable.County.Taxable}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Taxable}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Municipal.Taxable}}</td>
+                                <td>{{.bcpa.ExemptionsTaxable.Independent.Taxable}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

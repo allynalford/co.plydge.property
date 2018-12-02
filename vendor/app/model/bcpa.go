@@ -163,6 +163,15 @@ type Sale struct {
 	BookPageCIN string `json:"bookpagecin"`
 }
 
+// DataIsNonZero used to compare strings
+func (b Bcpa) DataIsNonZero(d string) bool {
+	if d == "0" {
+		return true
+	} else {
+		return false
+	}
+}
+
 // BcpaCreate creates a BCPA record
 func BcpaCreate(userID string, b Bcpa, dbType database.Type) error {
 	var err error
