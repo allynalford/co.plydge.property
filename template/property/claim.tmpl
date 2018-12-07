@@ -70,7 +70,7 @@
                                         <td colspan="3">{{.bcpa.LandCalculations.EffActYearBuilt}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">(Card, Sketch)</td>
+                                        <td colspan="3">(Card, <a href="http://www.bcpa.net{{.bcpa.LandCalculations.SketchURL}}" target="_new">Sketch</a>)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -183,49 +183,49 @@
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.JustValue}}</td>
                             </tr>
                              {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Portability }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Portability</td>
+                                <td><a href="http://www.bcpa.net/FAQ.asp#10006" target="_new" >Portability</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.Portability}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Portability}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.Portability}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.Portability}}</td>
                             </tr>
                            {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.AssessedSOH }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Assessed/SOH</td>
+                                <td><a href="http://www.bcpa.net/SOH.asp" target="_new">Assessed/SOH</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.AssessedSOH}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.AssessedSOH}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.AssessedSOH}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.AssessedSOH}}</td>
                             </tr>
                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Homestead }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Homestead</td>
+                                <td><a href="http://www.bcpa.net/homestead.asp" target="_new">Homestead</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.Homestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Homestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.Homestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.Homestead}}</td>
                             </tr>
                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.AddHomestead }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Add. Homestead</td>
+                                <td><a href="http://www.bcpa.net/homestead.asp" target="_new">Add. Homestead<a/></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.AddHomestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.AddHomestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.AddHomestead}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.AddHomestead}}</td>
                             </tr>
                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.WidVetDis }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Wid/Vet/Dis</td>
+                                <td><a href="http://www.bcpa.net/ExemptionCodesExpanded.asp" target="_new">Wid/Vet/Dis</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.WidVetDis}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.WidVetDis}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.WidVetDis}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.WidVetDis}}</td>
                             </tr>
                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.Senior }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Senior</td>
+                                <td><a href="http://www.bcpa.net/senior_instructions.asp" target="_new">Senior</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.Senior}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.Senior}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.Senior}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Independent.Senior}}</td>
                             </tr>
                             {{if .bcpa.DataIsNonZero .bcpa.ExemptionsTaxable.County.XemptType }} <tr class="warning"> {{else}} <tr class="success"> {{end}}
-                                <td>Exempt Type</td>
+                                <td><a href="http://www.bcpa.net/ExemptionCodesExpanded.asp" target="_new">Exempt Type</a></td>
                                 <td>{{.bcpa.ExemptionsTaxable.County.XemptType}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.SchoolBoard.XemptType}}</td>
                                 <td>{{.bcpa.ExemptionsTaxable.Municipal.XemptType}}</td>

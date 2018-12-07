@@ -9,7 +9,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/ivpusic/grpool"
 	"github.com/josephspurrier/csrfbanana"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -26,6 +28,23 @@ func PropertyReadGET(w http.ResponseWriter, r *http.Request) {
 	//	log.Println(err)
 	//	notes = []model.Note{}
 	//}
+
+	// number of workers, and size of job queue
+	pool := grpool.NewPool(10, 5)
+
+	// release resources used by pool
+	defer pool.Release()
+
+	pool.JobQueue <- func() {
+		fmt.Println("Adding")
+
+		model.Scrape()
+
+		// dummy wait until jobs are finished
+		fmt.Println("Done.. Sleep... ")
+		time.Sleep(10 * time.Second)
+		fmt.Println("Done Sleeping")
+	}
 
 	// Display the view
 	v := view.New(r)
