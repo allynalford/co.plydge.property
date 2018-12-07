@@ -17,6 +17,7 @@ RUN go get github.com/julienschmidt/httprouter
 RUN go get github.com/justinas/alice
 RUN go get github.com/chromedp/chromedp
 RUN go get github.com/PuerkitoBio/goquery
+RUN go get github.com/ivpusic/grpool
 
 # build
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '-w -extldflags "-static"'
