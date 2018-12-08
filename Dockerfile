@@ -68,7 +68,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '-w -extldflags "-st
 
 COPY ca-certificates.crt /etc/ssl/certs/
 
-EXPOSE 80
+EXPOSE 80 443
 
 ENV COMMIT_SHA=${COMMIT_SHA}
 ENTRYPOINT ["./co.plydge.property"]
